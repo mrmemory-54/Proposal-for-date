@@ -1,0 +1,115 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #ffccd5;
+  background-image: radial-gradient(#ffb3c1 2px, transparent 2px);
+  background-size: 20px 20px;
+  font-family: 'Courier New', Courier, monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  background: #ffb3c6;
+  border: 4px solid #fff;
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+  max-width: 350px;
+  width: 90%;
+}
+
+.hidden {
+  display: none;
+}
+
+.gif-container img {
+  width: 130px;
+  border-radius: 15px;
+  border: 3px solid #fff;
+}
+
+h1, h2 {
+  color: #d63384;
+  margin-top: 15px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+#yesBtn {
+  background-color: #ff4d6d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#noBtn {
+  background-color: white;
+  color: #ff4d6d;
+  border: 2px solid #ff4d6d;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#noMsg {
+  color: #851e3e;
+  font-size: 14px;
+  margin-top: 12px;
+  font-weight: bold;
+}
+
+.grid-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.opt-btn {
+  background: white;
+  border: 2px solid #ff4d6d;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #d63384;
+  cursor: pointer;
+}
+
+.opt-btn.selected {
+  background: #ff4d6d;
+  color: white;
+}
+
+.action-btn {
+  background: #ff4d6d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+input[type="date"] {
+  padding: 8px;
+  border-radius: 8px;
+  border: 2px solid #ff4d6d;
+  outline: none;
+}
