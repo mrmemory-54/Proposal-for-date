@@ -3,231 +3,257 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Will You Go Out With Me?</title>
-  <!-- Pixel Art Font -->
+  <title>Will you go out with me?</title>
+  
+  <!-- Retro Pixel Font -->
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   
   <style>
     * {
       box-sizing: border-box;
       font-family: 'Press Start 2P', cursive;
+      user-select: none;
     }
 
     body {
       margin: 0;
       padding: 0;
-      min-height: 100vh;
-      background-color: #ff9ebb;
-      /* Pink Cloud Pixel Pattern */
-      background-image: radial-gradient(#ff6b8b 20%, transparent 20%),
-                        radial-gradient(#ff6b8b 20%, transparent 20%);
-      background-size: 30px 30px;
-      background-position: 0 0, 15px 15px;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background-color: #ff91af;
+      /* Pixel Dot Pattern like video */
+      background-image: radial-gradient(#ff6893 25%, transparent 25%);
+      background-size: 18px 18px;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
-    .card {
-      background: #ffaec9;
-      border: 6px solid #ffffff;
-      border-radius: 24px;
-      padding: 25px 20px;
+    /* Main Container Card */
+    .container {
+      background: rgba(255, 175, 198, 0.85);
+      backdrop-filter: blur(8px);
+      border: 4px solid #ffffff;
+      border-radius: 28px;
+      padding: 30px 20px;
+      width: 350px;
+      max-width: 90%;
       text-align: center;
-      box-shadow: 0px 10px 0px #d46b86;
-      max-width: 380px;
-      width: 90%;
-      margin: 15px;
+      box-shadow: 0 12px 30px rgba(214, 51, 108, 0.35);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
     }
 
     .hidden {
       display: none !important;
     }
 
-    .gif-box {
-      border: 4px solid #fff;
-      border-radius: 16px;
-      overflow: hidden;
+    /* Pixel GIF Box with Dark Border */
+    .gif-frame {
+      background: #ffffff;
+      border: 4px solid #4a1525;
+      border-radius: 20px;
+      padding: 6px;
       display: inline-block;
-      background: #fff;
-      padding: 5px;
-      margin-bottom: 15px;
+      box-shadow: 0 6px 0 #4a1525;
+      margin-bottom: 20px;
     }
 
-    .gif-box img {
-      width: 140px;
-      height: 140px;
+    .gif-frame img {
+      width: 130px;
+      height: 130px;
       object-fit: cover;
+      border-radius: 14px;
       display: block;
-      border-radius: 12px;
     }
 
-    h2 {
-      color: #7a1d36;
-      font-size: 16px;
+    /* Title Styling */
+    .title {
+      color: #ffffff;
+      font-size: 18px;
       line-height: 1.6;
-      margin: 15px 0;
-      text-shadow: 1px 1px 0px #fff;
+      text-shadow: 3px 3px 0px #be2d5a, -2px -2px 0px #be2d5a, 2px -2px 0px #be2d5a, -2px 2px 0px #be2d5a;
+      margin: 10px 0 25px 0;
+      letter-spacing: 1px;
     }
 
-    p {
-      color: #7a1d36;
-      font-size: 10px;
-      line-height: 1.5;
-    }
-
-    .buttons {
+    /* Buttons Container */
+    .btn-group {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 15px;
-      margin-top: 20px;
-      flex-wrap: wrap;
+      width: 100%;
+      min-height: 60px;
     }
 
+    /* Pixel Art Buttons */
     .btn-yes {
-      background-color: #ff3366;
-      color: white;
-      border: 3px solid #fff;
-      padding: 12px 20px;
-      font-size: 14px;
+      background: #ff2a5f;
+      color: #ffffff;
+      border: 3px solid #ffffff;
       border-radius: 12px;
+      padding: 12px 22px;
+      font-size: 14px;
       cursor: pointer;
-      box-shadow: 0 4px 0 #b3002d;
-      transition: transform 0.2s ease;
+      box-shadow: 0 5px 0 #990026;
+      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 10;
+      text-shadow: 1px 1px 0 #73001c;
     }
 
     .btn-no {
-      background-color: #ffffff;
-      color: #ff3366;
-      border: 3px solid #ff3366;
-      padding: 10px 16px;
-      font-size: 12px;
+      background: #ffffff;
+      color: #ff2a5f;
+      border: 3px solid #ff2a5f;
       border-radius: 12px;
+      padding: 10px 18px;
+      font-size: 12px;
       cursor: pointer;
-      box-shadow: 0 4px 0 #d46b86;
+      box-shadow: 0 4px 0 #d96282;
+      transition: all 0.1s;
     }
 
-    #noMsg {
-      color: #900c3f;
+    .sub-text {
+      color: #73001c;
       font-size: 9px;
       margin-top: 15px;
-      height: 15px;
+      height: 12px;
+      font-weight: bold;
     }
 
-    /* Date Screen Styles */
+    /* Date Screen Input */
+    .date-input-box {
+      margin: 15px 0;
+    }
+
     input[type="date"] {
       font-family: 'Press Start 2P', cursive;
-      font-size: 10px;
+      background: #ffffff;
+      border: 3px solid #ff2a5f;
       padding: 10px;
-      border: 3px solid #ff3366;
       border-radius: 10px;
+      color: #73001c;
+      font-size: 10px;
       outline: none;
-      margin: 15px 0;
-      color: #7a1d36;
+      box-shadow: 0 4px 0 #d96282;
     }
 
-    /* Grid Options */
-    .grid-options {
+    /* Activity Options Grid */
+    .options-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin: 20px 0;
+      gap: 12px;
+      width: 100%;
+      margin: 15px 0 20px 0;
     }
 
-    .opt-btn {
-      background: white;
+    .opt-card {
+      background: #ffffff;
       border: 3px solid #ff7597;
-      padding: 10px 5px;
       border-radius: 10px;
+      padding: 12px 6px;
       font-size: 8px;
-      color: #7a1d36;
+      color: #73001c;
       cursor: pointer;
+      box-shadow: 0 4px 0 #e6a1b2;
       line-height: 1.4;
     }
 
-    .opt-btn.selected {
-      background: #ff3366;
-      color: white;
-      border-color: #fff;
+    .opt-card.active {
+      background: #ff2a5f;
+      color: #ffffff;
+      border-color: #ffffff;
+      box-shadow: 0 4px 0 #990026;
     }
 
+    /* Action Buttons (CONTINUE / LOCK IT IN) */
     .action-btn {
-      background: #ff3366;
-      color: white;
-      border: 3px solid #fff;
-      padding: 12px 18px;
-      font-size: 10px;
+      background: #ffffff;
+      color: #ff2a5f;
+      border: 3px solid #ff2a5f;
       border-radius: 12px;
+      padding: 12px 20px;
+      font-size: 10px;
       cursor: pointer;
-      box-shadow: 0 4px 0 #b3002d;
-      margin-top: 10px;
+      box-shadow: 0 4px 0 #d96282;
+    }
+
+    .action-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #d96282;
     }
   </style>
 </head>
 <body>
 
-  <!-- Screen 1: Proposal -->
-  <div id="screen1" class="card">
-    <div class="gif-box">
-      <!-- Cute Bear Pixel Gif -->
-      <img src="https://media.tenor.com/gU21EgM3K58AAAAi/peach-cat-cute.gif" alt="Cute Cat">
+  <!-- STEP 1: PROPOSAL -->
+  <div id="step1" class="container">
+    <div class="gif-frame">
+      <img id="mainGif" src="https://media.tenor.com/gU21EgM3K58AAAAi/peach-cat-cute.gif" alt="Cat">
     </div>
-    <h2>Will you go out with me?</h2>
+    <div class="title">Will you go out with me?</div>
     
-    <div class="buttons">
-      <button id="yesBtn" class="btn-yes" onclick="goToScreen2()">YES!</button>
-      <button id="noBtn" class="btn-no" onclick="handleNoClick()">No</button>
+    <div class="btn-group">
+      <button id="yesBtn" class="btn-yes" onclick="nextStep(2)">YES!</button>
+      <button id="noBtn" class="btn-no" onclick="handleNo()">No</button>
     </div>
-    <p id="noMsg"></p>
+    <div id="noMsg" class="sub-text"></div>
   </div>
 
-  <!-- Screen 2: Date Picker -->
-  <div id="screen2" class="card hidden">
-    <div class="gif-box">
-      <img src="https://media.tenor.com/vH97Z9d1S50AAAAi/milk-and-mocha-hug.gif" alt="Happy">
+  <!-- STEP 2: YAY & PICK A DATE -->
+  <div id="step2" class="container hidden">
+    <div class="gif-frame">
+      <img src="https://media.tenor.com/vH97Z9d1S50AAAAi/milk-and-mocha-hug.gif" alt="Hug">
     </div>
-    <h2>YAY! 🎉</h2>
-    <p>I'm so glad u said yes.</p>
-    <br>
-    <p>PICK A DATE</p>
-    <input type="date" id="dateInput">
-    <br>
-    <button class="action-btn" onclick="goToScreen3()">CONTINUE ➔</button>
+    <div class="title" style="font-size: 22px;">YAY! 💕</div>
+    <div class="sub-text" style="font-size: 9px; margin-bottom: 15px;">I'M SO GLAD U SAID YES.</div>
+    
+    <div class="date-input-box">
+      <div class="sub-text" style="margin-bottom: 8px;">PICK A DATE</div>
+      <input type="date" id="datePicker">
+    </div>
+
+    <button class="action-btn" onclick="goToStep3()">PRESS TO CONTINUE ➔</button>
   </div>
 
-  <!-- Screen 3: Activity Picker -->
-  <div id="screen3" class="card hidden">
-    <h2>WHAT WOULD YOU LIKE TO DO?</h2>
-    <div class="grid-options">
-      <button class="opt-btn" onclick="selectActivity(this)">DINNER DATE</button>
-      <button class="opt-btn" onclick="selectActivity(this)">MOVIE NIGHT</button>
-      <button class="opt-btn" onclick="selectActivity(this)">COFFEE & WALK</button>
-      <button class="opt-btn" onclick="selectActivity(this)">PICNIC</button>
-      <button class="opt-btn" onclick="selectActivity(this)">MINI GOLF</button>
-      <button class="opt-btn" onclick="selectActivity(this)">SURPRISE ME</button>
+  <!-- STEP 3: SELECT ACTIVITY -->
+  <div id="step3" class="container hidden">
+    <div class="title" style="font-size: 12px; line-height: 1.8;">WHAT WOULD YOU LIKE TO DO?</div>
+    
+    <div class="options-grid">
+      <div class="opt-card" onclick="selectOpt(this, 'DINNER DATE')">DINNER DATE</div>
+      <div class="opt-card" onclick="selectOpt(this, 'MOVIE NIGHT')">MOVIE NIGHT</div>
+      <div class="opt-card" onclick="selectOpt(this, 'COFFEE & WALK')">COFFEE & WALK</div>
+      <div class="opt-card" onclick="selectOpt(this, 'PICNIC')">PICNIC</div>
+      <div class="opt-card" onclick="selectOpt(this, 'MINI GOLF')">MINI GOLF</div>
+      <div class="opt-card active" onclick="selectOpt(this, 'SURPRISE ME')">SURPRISE ME</div>
     </div>
-    <button class="action-btn" onclick="showFinalScreen()">LOCK IT IN 🔒</button>
+
+    <button class="action-btn" onclick="finishDate()">LOCK IT IN 🔒</button>
   </div>
 
-  <!-- Screen 4: Final Summary -->
-  <div id="screen4" class="card hidden">
-    <div class="gif-box">
+  <!-- STEP 4: FINAL SCREEN -->
+  <div id="step4" class="container hidden">
+    <div class="gif-frame">
       <img src="https://media.tenor.com/T_08mU0S-xAAAAAi/milk-and-mocha-bear.gif" alt="Love">
     </div>
-    <h2>IT'S A DATE! 💖</h2>
-    <p id="summaryText" style="font-size: 10px; line-height: 1.8;"></p>
+    <div class="title" style="font-size: 18px;">IT'S A DATE! 🎉</div>
+    <div id="summary" class="sub-text" style="font-size: 9px; line-height: 2; margin-top: 10px;"></div>
   </div>
 
   <script>
-    let yesScale = 1;
+    let scale = 1;
     let selectedActivity = "SURPRISE ME";
 
-    // Telegram Configuration (নিজের টোকেন ও চ্যাট আইডি বসান)
-    const TELEGRAM_BOT_TOKEN = "YOUR_BOT_TOKEN_HERE"; 
-    const TELEGRAM_CHAT_ID = "YOUR_CHAT_ID_HERE";
+    // 🔴 আপনার Telegram Bot Details এখানে দিন (যদি নোটিফিকেশন চান)
+    const BOT_TOKEN = "YOUR_TELEGRAM_BOT_TOKEN";
+    const CHAT_ID = "YOUR_TELEGRAM_CHAT_ID";
 
-    const noMessages = [
+    const noTexts = [
       "Are you sure?",
       "Better say yes!",
       "Babe please :(",
@@ -235,69 +261,62 @@
       "I'm gonna cry...",
       "Heart broken... 💔"
     ];
-    let msgIndex = 0;
+    let msgIdx = 0;
 
-    function handleNoClick() {
-      yesScale += 0.35;
+    function handleNo() {
+      // YES বাটন বড় হবে
+      scale += 0.4;
       const yesBtn = document.getElementById('yesBtn');
-      yesBtn.style.transform = `scale(${yesScale})`;
+      yesBtn.style.transform = `scale(${scale})`;
 
-      const noMsg = document.getElementById('noMsg');
-      noMsg.innerText = noMessages[msgIndex];
-      msgIndex = (msgIndex + 1) % noMessages.length;
+      // নিচের টেক্সট পরিবর্তন হবে
+      document.getElementById('noMsg').innerText = noTexts[msgIdx];
+      msgIdx = (msgIdx + 1) % noTexts.length;
     }
 
-    function goToScreen2() {
-      document.getElementById('screen1').classList.add('hidden');
-      document.getElementById('screen2').classList.remove('hidden');
+    function nextStep(step) {
+      document.getElementById('step1').classList.add('hidden');
+      document.getElementById('step2').classList.remove('hidden');
     }
 
-    function goToScreen3() {
-      const dateValue = document.getElementById('dateInput').value;
-      if (!dateValue) {
-        alert("Please pick a date first! 💕");
+    function goToStep3() {
+      const dateVal = document.getElementById('datePicker').value;
+      if (!dateVal) {
+        alert("Please pick a date first! 📅");
         return;
       }
-      document.getElementById('screen2').classList.add('hidden');
-      document.getElementById('screen3').classList.remove('hidden');
+      document.getElementById('step2').classList.add('hidden');
+      document.getElementById('step3').classList.remove('hidden');
     }
 
-    function selectActivity(btn) {
-      const buttons = document.querySelectorAll('.opt-btn');
-      buttons.forEach(b => b.classList.remove('selected'));
-      btn.classList.add('selected');
-      selectedActivity = btn.innerText;
+    function selectOpt(element, activity) {
+      document.querySelectorAll('.opt-card').forEach(card => card.classList.remove('active'));
+      element.classList.add('active');
+      selectedActivity = activity;
     }
 
-    function showFinalScreen() {
-      const dateValue = document.getElementById('dateInput').value;
-      document.getElementById('screen3').classList.add('hidden');
-      document.getElementById('screen4').classList.remove('hidden');
-      
-      document.getElementById('summaryText').innerHTML = `
-        DATE: <span style="color:#ff3366">${dateValue}</span><br><br>
-        ACTIVITY: <span style="color:#ff3366">${selectedActivity}</span>
+    function finishDate() {
+      const dateVal = document.getElementById('datePicker').value;
+      document.getElementById('step3').classList.add('hidden');
+      document.getElementById('step4').classList.remove('hidden');
+
+      document.getElementById('summary').innerHTML = `
+        DATE: <span style="color: #ff2a5f;">${dateVal}</span><br>
+        ACTIVITY: <span style="color: #ff2a5f;">${selectedActivity}</span>
       `;
 
-      // টেলিগ্রামে মেসেজ পাঠানো
-      sendTelegramNotification(dateValue, selectedActivity);
-    }
-
-    function sendTelegramNotification(date, activity) {
-      if (TELEGRAM_BOT_TOKEN === "YOUR_BOT_TOKEN_HERE") return; // সেটআপ না করা থাকলে স্কিপ করবে
-
-      const message = `🎉 SHE SAID YES! 🎉\n\n📅 Date: ${date}\n🍕 Activity: ${activity}`;
-
-      fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chat_id: TELEGRAM_CHAT_ID,
-          text: message
-        })
-      }).catch(err => console.log(err));
+      // টেলিগ্রামে অ্যালার্ট পাঠানো
+      if (BOT_TOKEN !== "YOUR_TELEGRAM_BOT_TOKEN") {
+        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: `🎉 SHE SAID YES!\n\n📅 Date: ${dateVal}\n🍕 Activity: ${selectedActivity}`
+          })
+        });
+      }
     }
   </script>
 </body>
 </html>
-
