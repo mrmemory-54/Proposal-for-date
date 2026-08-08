@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Will You Go Out With Me?</title>
+  <!-- Pixel Art Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Press Start 2P', cursive;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background-color: #ff9ebb;
+      /* Pink Cloud Pixel Pattern */
+      background-image: radial-gradient(#ff6b8b 20%, transparent 20%),
+                        radial-gradient(#ff6b8b 20%, transparent 20%);
+      background-size: 30px 30px;
+      background-position: 0 0, 15px 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      background: #ffaec9;
+      border: 6px solid #ffffff;
+      border-radius: 24px;
+      padding: 25px 20px;
+      text-align: center;
+      box-shadow: 0px 10px 0px #d46b86;
+      max-width: 380px;
+      width: 90%;
+      margin: 15px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .gif-box {
+      border: 4px solid #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      display: inline-block;
+      background: #fff;
+      padding: 5px;
+      margin-bottom: 15px;
+    }
+
+    .gif-box img {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+      border-radius: 12px;
+    }
+
+    h2 {
+      color: #7a1d36;
+      font-size: 16px;
+      line-height: 1.6;
+      margin: 15px 0;
+      text-shadow: 1px 1px 0px #fff;
+    }
+
+    p {
+      color: #7a1d36;
+      font-size: 10px;
+      line-height: 1.5;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn-yes {
+      background-color: #ff3366;
+      color: white;
+      border: 3px solid #fff;
+      padding: 12px 20px;
+      font-size: 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 0 #b3002d;
+      transition: transform 0.2s ease;
+    }
+
+    .btn-no {
+      background-color: #ffffff;
+      color: #ff3366;
+      border: 3px solid #ff3366;
+      padding: 10px 16px;
+      font-size: 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 0 #d46b86;
+    }
+
+    #noMsg {
+      color: #900c3f;
+      font-size: 9px;
+      margin-top: 15px;
+      height: 15px;
+    }
+
+    /* Date Screen Styles */
+    input[type="date"] {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 10px;
+      padding: 10px;
+      border: 3px solid #ff3366;
+      border-radius: 10px;
+      outline: none;
+      margin: 15px 0;
+      color: #7a1d36;
+    }
+
+    /* Grid Options */
+    .grid-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .opt-btn {
+      background: white;
+      border: 3px solid #ff7597;
+      padding: 10px 5px;
+      border-radius: 10px;
+      font-size: 8px;
+      color: #7a1d36;
+      cursor: pointer;
+      line-height: 1.4;
+    }
+
+    .opt-btn.selected {
+      background: #ff3366;
+      color: white;
+      border-color: #fff;
+    }
+
+    .action-btn {
+      background: #ff3366;
+      color: white;
+      border: 3px solid #fff;
+      padding: 12px 18px;
+      font-size: 10px;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 0 #b3002d;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Screen 1: Proposal -->
+  <div id="screen1" class="card">
+    <div class="gif-box">
+      <!-- Cute Bear Pixel Gif -->
+      <img src="https://media.tenor.com/gU21EgM3K58AAAAi/peach-cat-cute.gif" alt="Cute Cat">
+    </div>
+    <h2>Will you go out with me?</h2>
+    
+    <div class="buttons">
+      <button id="yesBtn" class="btn-yes" onclick="goToScreen2()">YES!</button>
+      <button id="noBtn" class="btn-no" onclick="handleNoClick()">No</button>
+    </div>
+    <p id="noMsg"></p>
+  </div>
+
+  <!-- Screen 2: Date Picker -->
+  <div id="screen2" class="card hidden">
+    <div class="gif-box">
+      <img src="https://media.tenor.com/vH97Z9d1S50AAAAi/milk-and-mocha-hug.gif" alt="Happy">
+    </div>
+    <h2>YAY! 🎉</h2>
+    <p>I'm so glad u said yes.</p>
+    <br>
+    <p>PICK A DATE</p>
+    <input type="date" id="dateInput">
+    <br>
+    <button class="action-btn" onclick="goToScreen3()">CONTINUE ➔</button>
+  </div>
+
+  <!-- Screen 3: Activity Picker -->
+  <div id="screen3" class="card hidden">
+    <h2>WHAT WOULD YOU LIKE TO DO?</h2>
+    <div class="grid-options">
+      <button class="opt-btn" onclick="selectActivity(this)">DINNER DATE</button>
+      <button class="opt-btn" onclick="selectActivity(this)">MOVIE NIGHT</button>
+      <button class="opt-btn" onclick="selectActivity(this)">COFFEE & WALK</button>
+      <button class="opt-btn" onclick="selectActivity(this)">PICNIC</button>
+      <button class="opt-btn" onclick="selectActivity(this)">MINI GOLF</button>
+      <button class="opt-btn" onclick="selectActivity(this)">SURPRISE ME</button>
+    </div>
+    <button class="action-btn" onclick="showFinalScreen()">LOCK IT IN 🔒</button>
+  </div>
+
+  <!-- Screen 4: Final Summary -->
+  <div id="screen4" class="card hidden">
+    <div class="gif-box">
+      <img src="https://media.tenor.com/T_08mU0S-xAAAAAi/milk-and-mocha-bear.gif" alt="Love">
+    </div>
+    <h2>IT'S A DATE! 💖</h2>
+    <p id="summaryText" style="font-size: 10px; line-height: 1.8;"></p>
+  </div>
+
+  <script>
+    let yesScale = 1;
+    let selectedActivity = "SURPRISE ME";
+
+    // Telegram Configuration (নিজের টোকেন ও চ্যাট আইডি বসান)
+    const TELEGRAM_BOT_TOKEN = "YOUR_BOT_TOKEN_HERE"; 
+    const TELEGRAM_CHAT_ID = "YOUR_CHAT_ID_HERE";
+
+    const noMessages = [
+      "Are you sure?",
+      "Better say yes!",
+      "Babe please :(",
+      "Don't do this...",
+      "I'm gonna cry...",
+      "Heart broken... 💔"
+    ];
+    let msgIndex = 0;
+
+    function handleNoClick() {
+      yesScale += 0.35;
+      const yesBtn = document.getElementById('yesBtn');
+      yesBtn.style.transform = `scale(${yesScale})`;
+
+      const noMsg = document.getElementById('noMsg');
+      noMsg.innerText = noMessages[msgIndex];
+      msgIndex = (msgIndex + 1) % noMessages.length;
+    }
+
+    function goToScreen2() {
+      document.getElementById('screen1').classList.add('hidden');
+      document.getElementById('screen2').classList.remove('hidden');
+    }
+
+    function goToScreen3() {
+      const dateValue = document.getElementById('dateInput').value;
+      if (!dateValue) {
+        alert("Please pick a date first! 💕");
+        return;
+      }
+      document.getElementById('screen2').classList.add('hidden');
+      document.getElementById('screen3').classList.remove('hidden');
+    }
+
+    function selectActivity(btn) {
+      const buttons = document.querySelectorAll('.opt-btn');
+      buttons.forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      selectedActivity = btn.innerText;
+    }
+
+    function showFinalScreen() {
+      const dateValue = document.getElementById('dateInput').value;
+      document.getElementById('screen3').classList.add('hidden');
+      document.getElementById('screen4').classList.remove('hidden');
+      
+      document.getElementById('summaryText').innerHTML = `
+        DATE: <span style="color:#ff3366">${dateValue}</span><br><br>
+        ACTIVITY: <span style="color:#ff3366">${selectedActivity}</span>
+      `;
+
+      // টেলিগ্রামে মেসেজ পাঠানো
+      sendTelegramNotification(dateValue, selectedActivity);
+    }
+
+    function sendTelegramNotification(date, activity) {
+      if (TELEGRAM_BOT_TOKEN === "YOUR_BOT_TOKEN_HERE") return; // সেটআপ না করা থাকলে স্কিপ করবে
+
+      const message = `🎉 SHE SAID YES! 🎉\n\n📅 Date: ${date}\n🍕 Activity: ${activity}`;
+
+      fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: TELEGRAM_CHAT_ID,
+          text: message
+        })
+      }).catch(err => console.log(err));
+    }
+  </script>
+</body>
+</html>
+
